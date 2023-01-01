@@ -15,7 +15,11 @@ def generate_rgbaRo():
 def generate_vertices(L,B,H):
     #random.seed(seed)
     
-    volume=L*B*H
+    new_L=random.randint(1,L)
+    new_B=random.randint(1,B)
+    new_H=random.randint(1,H)
+    
+    volume=new_L*new_B*new_H
     
     #generate random number of vertices (min-3, max-volume of bounding frame)
     numOfVertices=random.randint(3,int(volume**(1/2)))
@@ -24,9 +28,9 @@ def generate_vertices(L,B,H):
     VERTICES=[]
     i=0
     while i<numOfVertices:
-        x=random.uniform(0,L)
-        y=random.uniform(0,H)
-        z=random.uniform(0,B)
+        x=random.uniform(0,new_L)
+        y=random.uniform(0,new_H)
+        z=random.uniform(0,new_B)
         if [x,y,z] not in VERTICES:
             VERTICES.append([x,y,z])
             i+=1
