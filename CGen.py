@@ -73,9 +73,9 @@ def generate_chromosome(L,B,H):
     
     r,g,b,a,RoughnessFactor=generate_rgbaRo()
     
-    new_L=random.randint(1,L)
-    new_B=random.randint(1,B)
-    new_H=random.randint(1,H)
+    new_L=L
+    new_B=B
+    new_H=H
     
     VERTICES=generate_vertices(new_L,new_B,new_H)
     
