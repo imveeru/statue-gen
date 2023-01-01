@@ -65,6 +65,9 @@ def fitness(PATH):
 def face_count(FACES,RO):
     return len(FACES)*(4**RO)
 
+def new_fitness(FACES,RO,VERTICES,SHAPE):
+    return len(FACES)*(4**RO)+len(VERTICES)+SHAPE[1]+(SHAPE[0]*SHAPE[1]*SHAPE[2])
+
 def fractal_dimension(FACES):
     
     def countFrequency(my_list):

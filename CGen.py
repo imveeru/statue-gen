@@ -15,22 +15,18 @@ def generate_rgbaRo():
 def generate_vertices(L,B,H):
     #random.seed(seed)
     
-    new_L=random.randint(1,L)
-    new_B=random.randint(1,B)
-    new_H=random.randint(1,H)
-    
-    volume=new_L*new_B*new_H
+    volume=L*B*H
     
     #generate random number of vertices (min-3, max-volume of bounding frame)
-    numOfVertices=random.randint(3,int(volume**(1/2)))
+    numOfVertices=random.randint(3,int(volume**(1/3)))
     
     #generate vertices array
     VERTICES=[]
     i=0
     while i<numOfVertices:
-        x=random.uniform(0,new_L)
-        y=random.uniform(0,new_H)
-        z=random.uniform(0,new_B)
+        x=random.uniform(0,L)
+        y=random.uniform(0,H)
+        z=random.uniform(0,B)
         if [x,y,z] not in VERTICES:
             VERTICES.append([x,y,z])
             i+=1
@@ -77,15 +73,20 @@ def generate_chromosome(L,B,H):
     
     r,g,b,a,RoughnessFactor=generate_rgbaRo()
     
-    VERTICES=generate_vertices(L,B,H)
+    new_L=random.randint(1,L)
+    new_B=random.randint(1,B)
+    new_H=random.randint(1,H)
+    
+    VERTICES=generate_vertices(new_L,new_B,new_H)
     
     FACES=generate_faces(len(VERTICES))
     
-    return [r,g,b,a,RoughnessFactor,[VERTICES,FACES]]
+    return [r,g,b,a,RoughnessFactor,[VERTICES,FACES],[new_L,new_B,new_H]]
 
 def get_stats(CH):
     print(f'(R,G,B,A) = ({CH[0]},{CH[1]},{CH[2]},{CH[3]})')
     print(f'Roughness Factor = {CH[4]}')
     print(f'Number of vertices = {len(CH[5][0])}')
     print(f'Number of faces = {len(CH[5][1])}')
+    print(f'New Bounding Box - (L,B,H) = ({CH[6][0]},{CH[6][1]},{CH[6][2]})')
     
