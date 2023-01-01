@@ -25,8 +25,8 @@ def mutate(C,L,B,H):  # sourcery skip: merge-comparisons
             
             #for vertices and faces
             elif i==5:
-                verts=generate_vertices(L,B,H,random.random())
-                faces=generate_faces(len(verts),random.random())
+                verts=generate_vertices(L,B,H)
+                faces=generate_faces(len(verts))
                 mutated_C[i]=[verts,faces]
     
     return mutated_C

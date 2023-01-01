@@ -1,7 +1,7 @@
 import random
 
-def generate_rgbaRo(seed):
-    random.seed(seed)
+def generate_rgbaRo():
+    #random.seed(seed)
     
     # Randomly generate R,G,B,A and Roughness Factor
     R=random.randint(0,255) #Red
@@ -12,8 +12,8 @@ def generate_rgbaRo(seed):
     
     return R,G,B,A,RoughnessFactor
 
-def generate_vertices(L,B,H,seed):
-    random.seed(seed)
+def generate_vertices(L,B,H):
+    #random.seed(seed)
     
     volume=L*B*H
     
@@ -33,8 +33,8 @@ def generate_vertices(L,B,H,seed):
     
     return VERTICES
 
-def generate_faces(numOfVertices,seed):
-    random.seed(seed)
+def generate_faces(numOfVertices):
+    #random.seed(seed)
     
     FACES=set()
 
@@ -61,7 +61,7 @@ def generate_faces(numOfVertices,seed):
     
     return list(FACES)
 
-def generate_chromosome(L,B,H,seed):
+def generate_chromosome(L,B,H):
     '''
     L -> Length of the bounding frame of model to be generated
     B -> Breadth of the bounding frame of model to be generated
@@ -69,11 +69,11 @@ def generate_chromosome(L,B,H,seed):
     seed -> Manauly set random seed for each chromosome in the population 
     '''
     
-    r,g,b,a,RoughnessFactor=generate_rgbaRo(seed)
+    r,g,b,a,RoughnessFactor=generate_rgbaRo()
     
-    VERTICES=generate_vertices(L,B,H,seed)
+    VERTICES=generate_vertices(L,B,H)
     
-    FACES=generate_faces(len(VERTICES),seed)
+    FACES=generate_faces(len(VERTICES))
     
     return [r,g,b,a,RoughnessFactor,[VERTICES,FACES]]
 
