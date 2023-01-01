@@ -55,7 +55,7 @@ def generate_faces(numOfVertices,seed):
                         face.append(k)
 
                 # Add the face to the set of faces
-                if len(face)>3:
+                if len(face)>=3:
                     FACES.add(tuple(face))
       
     
