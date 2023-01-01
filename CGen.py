@@ -58,8 +58,10 @@ def generate_faces(numOfVertices):
                 if len(face)>=3:
                     FACES.add(tuple(face))
       
-    
-    return list(FACES)
+    if len(FACES)>0:
+        return list(FACES)
+    else:
+        return generate_faces(numOfVertices)
 
 def generate_chromosome(L,B,H):
     '''
