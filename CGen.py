@@ -42,8 +42,8 @@ def generate_edges(numOfVertices):
                     if (i,j) not in EDGES and (j,i) not in EDGES:
                         EDGES.append((i,j))
     
-    return EDGES
-
+    return EDGES if len(EDGES)>0 else generate_edges(numOfVertices)
+ 
 def generate_faces(numOfVertices):
     #random.seed(seed)
     
@@ -84,9 +84,9 @@ def generate_chromosome(L,B,H):
     
     r,g,b,a,RoughnessFactor=generate_rgbaRo()
     
-    new_L=random.uniform(1,L)
-    new_B=random.uniform(1,L)
-    new_H=random.uniform(1,L)
+    new_L=round(random.uniform(1,L),6)
+    new_B=round(random.uniform(1,B),6)
+    new_H=round(random.uniform(1,H),6)
     
     VERTICES=generate_vertices(new_L,new_B,new_H)
     
@@ -98,9 +98,9 @@ def generate_chromosome_edge(L,B,H):
     
     r,g,b,a,RoughnessFactor=generate_rgbaRo()
     
-    new_L=random.uniform(1,L)
-    new_B=random.uniform(1,L)
-    new_H=random.uniform(1,L)
+    new_L=round(random.uniform(1,L),6)
+    new_B=round(random.uniform(1,B),6)
+    new_H=round(random.uniform(1,H),6)
     
     VERTICES=generate_vertices(new_L,new_B,new_H)
     
