@@ -11,9 +11,9 @@ def mutate(C,L,B,H):  # sourcery skip: merge-comparisons
     L,B,H -> Length, Breadth and Height of the bounding frame
     '''
     
-    new_L=random.randint(1,L)
-    new_B=random.randint(1,B)
-    new_H=random.randint(1,H)
+#     new_L=random.randint(1,L)
+#     new_B=random.randint(1,B)
+#     new_H=random.randint(1,H)
     
     mutated_C=copy.copy(C)
     for i in range(len(mutated_C)):
@@ -30,7 +30,7 @@ def mutate(C,L,B,H):  # sourcery skip: merge-comparisons
             
             #for vertices and faces
             elif i==5:
-                verts=generate_vertices(new_L,new_B,new_H)
+                verts=generate_vertices(L,B,H)
                 faces=generate_faces(len(verts))
                 mutated_C[i]=[verts,faces]
     
