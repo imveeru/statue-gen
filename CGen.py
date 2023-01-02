@@ -33,6 +33,17 @@ def generate_vertices(L,B,H):
     
     return VERTICES
 
+def generate_edges(numOfVertices):
+    EDGES=[]
+    for i in range(numOfVertices-1):
+        for j in range(numOfVertices-1):
+            if i!=j:
+                if random.random()>0.5:
+                    if (i,j) not in EDGES and (j,i) not in EDGES:
+                        EDGES.append((i,j))
+    
+    return EDGES
+
 def generate_faces(numOfVertices):
     #random.seed(seed)
     
