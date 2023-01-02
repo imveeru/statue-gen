@@ -35,12 +35,12 @@ def generate_vertices(L,B,H):
 
 def generate_edges(numOfVertices):
     EDGES=[]
+    
     for i in range(numOfVertices-1):
         for j in range(numOfVertices-1):
-            if i!=j:
-                if random.random()>0.5:
-                    if (i,j) not in EDGES and (j,i) not in EDGES:
-                        EDGES.append((i,j))
+            if i!=j and random.random()>0.5:
+                if tuple(i,j) not in EDGES and tuple(j,i) not in EDGES:
+                    EDGES.append(tuple(i,j))
     
     if len(EDGES)>0:
         return EDGES
