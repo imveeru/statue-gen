@@ -42,7 +42,10 @@ def generate_edges(numOfVertices):
                     if (i,j) not in EDGES and (j,i) not in EDGES:
                         EDGES.append((i,j))
     
-    return EDGES if len(EDGES)>0 else generate_edges(numOfVertices)
+    if len(EDGES)>0:
+        return EDGES
+    else:
+        generate_edges(numOfVertices)
  
 def generate_faces(numOfVertices):
     #random.seed(seed)
