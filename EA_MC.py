@@ -36,6 +36,37 @@ def mutate(C,L,B,H):  # sourcery skip: merge-comparisons
     
     return mutated_C
 
+def mutate_edge(C,L,B,H):  # sourcery skip: merge-comparisons
+    '''
+    C -> Chromosome
+    L,B,H -> Length, Breadth and Height of the bounding frame
+    '''
+    
+#     new_L=random.randint(1,L)
+#     new_B=random.randint(1,B)
+#     new_H=random.randint(1,H)
+    
+    mutated_C=copy.copy(C)
+    for i in range(len(mutated_C)):
+        # generating a random value and checking for threshold value
+        if random.random()>0.5:
+            
+            # for colours R,G,B, and Alpha
+            if i==0 or i==1 or i==2 or i==3:
+                mutated_C[i]=random.randint(0,255)
+            
+            #for roughness factor
+            elif i==4:
+                mutated_C[i]=random.randint(0,5)
+            
+            #for vertices and faces
+            elif i==5:
+                verts=generate_vertices(L,B,H)
+                edges=generate_edges(len(verts))
+                mutated_C[i]=[verts,edges]
+    
+    return mutated_C
+
 
 def crossover(C1,C2):
     
