@@ -96,6 +96,18 @@ def generate_chromosome(L,B,H):
 
 def generate_chromosome_edge(L,B,H):
     
+    r,g,b,a,RoughnessFactor=generate_rgbaRo()
+    
+    new_L=random.uniform(1,L)
+    new_B=random.uniform(1,L)
+    new_H=random.uniform(1,L)
+    
+    VERTICES=generate_vertices(new_L,new_B,new_H)
+    
+    EDGES=generate_edges(len(VERTICES))
+    
+    return [r,g,b,a,RoughnessFactor,[VERTICES,EDGES],[new_L,new_B,new_H]]
+    
 
 def get_stats(CH):
     print(f'(R,G,B,A) = ({CH[0]},{CH[1]},{CH[2]},{CH[3]})')
