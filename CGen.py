@@ -1,4 +1,5 @@
 import random
+import scipy.spatial
 
 def generate_rgbaRo():
     #random.seed(seed)
@@ -52,6 +53,24 @@ def generate_edges(numOfVertices):
         return EDGES
     else:
         return generate_edges(numOfVertices)
+
+def generate_convex_faces(vertices):
+    tri = scipy.spatial.ConvexHull(vertices)
+    
+    faces = [(tri.simplices[i, j], tri.simplices[i, (j+1)%3], tri.simplices[i, (j+2)%3]) for i in range(tri.simplices.shape[0]) for j in range(3)]
+    
+    unique_faces = []
+
+    for f in faces:
+        sorted_face = tuple(sorted(f))
+
+        if sorted_face not in unique_faces:
+            unique_faces.append(sorted_face)
+     
+    if len(unique_faces)>0:
+        return unique_faces
+    else:
+        return generate_convex_faces(vertices)
  
 def generate_faces(numOfVertices):
     #random.seed(seed)
