@@ -12,7 +12,7 @@ def generate_rgbaRo(numOfFaces):
         B=random.uniform(0,1) #Blue
         A=random.uniform(0,1)   #Alpha (Opacity)
         
-        materials.append(R,G,B,A)
+        materials.append([R,G,B,A])
     
     RoughnessFactor=random.randint(0,6)
     
