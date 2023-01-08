@@ -1,9 +1,7 @@
 import random
 import copy
-import os
-import zlib
-import sys
 from ConvexCGen import *
+import numpy as np
 
 def mutate(C,L,B,H):  # sourcery skip: merge-comparisons
     '''
@@ -46,3 +44,30 @@ def crossover(C1,C2):
     
     return c1,c2
 
+def golden_ratio(vertices, faces):
+      
+  total_length = 0
+  for face in faces:
+    for i in range(len(face)):
+      v1 = vertices[face[i]]
+      v2 = vertices[face[(i+1) % len(face)]]
+      total_length += np.linalg.norm(v1 - v2)
+  avg_length = total_length / len(faces)
+  
+  
+  min_length = float('inf')
+  max_length = 0
+  for face in faces:
+    for i in range(len(face)):
+      v1 = vertices[face[i]]
+      v2 = vertices[face[(i+1) % len(face)]]
+      edge_length = np.linalg.norm(v1 - v2)
+      min_length = min(min_length, edge_length)
+      max_length = max(max_length, edge_length)
+  ratio = max_length / min_length
+  
+  
+  golden_ratio = (1 + np.sqrt(5)) / 2
+  deviation = abs(ratio - golden_ratio) / golden_ratio
+  
+  return 100 - deviation * 100
