@@ -102,3 +102,7 @@ def golden_ratio(vertices, faces):
   deviation = abs(ratio - golden_ratio) / golden_ratio
   
   return 100 - deviation * 100
+
+def fitness(vertices, faces,shape):
+    volume=round(shape[0]*shape[2]*shape[2],6)
+    
