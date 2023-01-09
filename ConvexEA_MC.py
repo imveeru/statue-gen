@@ -115,7 +115,7 @@ def volume_tetrahedron(tetrahedron):
 def volume_of_shape(vertices):
     # sourcery skip: inline-immediately-returned-variable
     tri = Delaunay(vertices)
-    tetrahedra = corners[tri.simplices]
+    tetrahedra = vertices[tri.simplices]
     
     volume = sum(np.array([volume_tetrahedron(t) for t in tetrahedra]))
     
