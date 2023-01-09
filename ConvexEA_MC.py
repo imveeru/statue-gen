@@ -111,6 +111,8 @@ def volume_tetrahedron(tetrahedron):
     ])
     return abs(np.linalg.det(matrix))/6
 
+
+
 def fitness(vertices, faces,shape):
     volume=round(shape[0]*shape[2]*shape[2],6)
     
