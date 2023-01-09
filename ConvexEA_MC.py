@@ -2,6 +2,7 @@ import random
 import copy
 from ConvexCGen import *
 import numpy as np
+from scipy.spatial import Delaunay
 
 def mutate(C,L,B,H):  # sourcery skip: merge-comparisons
     '''
@@ -63,7 +64,7 @@ def calculate_smoothness(vertices, faces):
     
     return smoothness
 
-def calculate_symmetry(vertices, faces):
+def calculate_symmetry(vertices):
     # Calculate the center of the mesh
     center = np.mean(vertices, axis=0)
 
@@ -111,8 +112,47 @@ def volume_tetrahedron(tetrahedron):
     ])
     return abs(np.linalg.det(matrix))/6
 
+def volume_of_shape(vertices):
+    # sourcery skip: inline-immediately-returned-variable
+    tri = Delaunay(vertices)
+    tetrahedra = corners[tri.simplices]
+    
+    volume = sum(np.array([volume_tetrahedron(t) for t in tetrahedra]))
+    
+    return volume
 
+def surface_area(vertices,faces):
+    surfaceArea=0
+    
+    for f in faces:
+        p1=vertices[f[0]]
+        p2=vertices[f[1]]
+        p3=vertices[f[2]]
+        
+        l1=(p2[0]-p1[0])**2+(p2[1]-p1[1])**2+(p2[2]-p1[2])**2
+        l2=(p3[0]-p2[0])**2+(p3[1]-p2[1])**2+(p3[2]-p2[2])**2
+        l3=(p1[0]-p3[0])**2+(p1[1]-p3[1])**2+(p1[2]-p3[2])**2
+        
+        
+        area=(4*l1*l2-(l3-l2-l1)**2)/16
+        
+        surfaceArea+=area
+    
+    return surfaceArea
 
 def fitness(vertices, faces,shape):
     volume=round(shape[0]*shape[2]*shape[2],6)
+    shapeVolume=volume_of_shape(vertices)
+    volumeOfEmptySpace=abs(volume-shapeVolume)
+    
+    goldenRatio=golden_ratio(vertices,faces)
+    
+    smoothness=calculate_smoothness(vertices,faces)
+    
+    symmetry=calculate_symmetry(vertices)
+    
+    numOfFaces=len(faces)
+    
+    return round((volumeOfEmptySpace+goldenRatio+smoothness+symmetry+numOfFaces)/5,6)
+    
     
