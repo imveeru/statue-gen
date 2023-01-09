@@ -103,6 +103,14 @@ def golden_ratio(vertices, faces):
   
   return 100 - deviation * 100
 
+def volume_tetrahedron(tetrahedron):
+    matrix = np.array([
+        tetrahedron[0] - tetrahedron[3],
+        tetrahedron[1] - tetrahedron[3],
+        tetrahedron[2] - tetrahedron[3]
+    ])
+    return abs(np.linalg.det(matrix))/6
+
 def fitness(vertices, faces,shape):
     volume=round(shape[0]*shape[2]*shape[2],6)
     
