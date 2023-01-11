@@ -101,8 +101,10 @@ def golden_ratio(vertices, faces):
   
   golden_ratio = (1 + np.sqrt(5)) / 2
   deviation = abs(ratio - golden_ratio) / golden_ratio
+
+  gr= 100 - deviation * 100
   
-  return 100 - deviation * 100
+  return 0 if gr<0 else gr
 
 def volume_tetrahedron(tetrahedron):
     matrix = np.array([
