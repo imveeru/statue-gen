@@ -27,7 +27,7 @@ def mutate(C,L,B,H):  # sourcery skip: merge-comparisons
             elif i==1:
                 verts=generate_vertices(L,B,H)
                 faces=generate_convex_faces(verts)
-                materials=generate_rgbaRo(len(faces))
+                materials,ro=generate_rgbaRo(len(faces))
                 mutated_C[i]=[verts,faces,materials]
     
     return mutated_C
