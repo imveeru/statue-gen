@@ -21,35 +21,30 @@ def generate_vertices(L,B,H):
     volume=L*B*H
     
     #generate random number of vertices (min-3, max-volume of bounding frame)
-    numOfVertices=random.randint(4,int(volume**(1/2)))
+    numOfVertices=random.randint(2,int(volume**(1/3)))
     
     #generate vertices array
     VERTICES=[]
     i=0
     while i<numOfVertices:
-        x=random.uniform(0,L)
-        y=random.uniform(0,H)
-        z=random.uniform(0,B)
+        x=round(random.uniform(0,L),6)
+        y=round(random.uniform(0,H),6)
+        z=round(random.uniform(0,B),6)
         if [x,y,z] not in VERTICES:
             VERTICES.append([x,y,z])
             i+=1
     
     return VERTICES
 
-def generate_convex_faces(vertices):
-    tri = scipy.spatial.ConvexHull(vertices)
-
-    faces = [(tri.simplices[i, j], tri.simplices[i, (j+1)%3], tri.simplices[i, (j+2)%3]) for i in range(tri.simplices.shape[0]) for j in range(3)]
-
-    unique_faces = []
-
-    for f in faces:
-        sorted_face = tuple(sorted(f))
-
-        if sorted_face not in unique_faces:
-            unique_faces.append(sorted_face)
-
-    return unique_faces or generate_convex_faces(vertices)
+def generate_edges(vertices):  # sourcery skip: convert-to-enumerate
+    #edges
+    edges=[]
+    i=1
+    for j in range(len(vertices)-1):
+        edges.append([j,i])
+        i+=1
+    
+    return edges
 
 def generate_chromosome(L,B,H):
     '''
