@@ -11,10 +11,10 @@ VERTS_FILE=my_input[5]
 
 MATERIALS=literal_eval(my_input[6])
 
-BD=my_input[7]
-ME=my_input[8]
-RO=my_input[9]
-SS=my_input[10]
+BD=float(my_input[7])
+ME=float(my_input[8])
+RO=float(my_input[9])
+SS=float(my_input[10])
 
 OUTPUT_PATH=my_input[11]
 

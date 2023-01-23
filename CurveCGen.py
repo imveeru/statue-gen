@@ -19,7 +19,7 @@ def generate_vertices(L,B,H):
     
     volume=L*B*H
     
-    #generate random number of vertices (min-3, max-volume of bounding frame)
+    #generate random number of vertices (min-2, max-volume of bounding frame)
     numOfVertices=random.randint(2,int(volume**(1/3)))
     
     #generate vertices array
