@@ -65,3 +65,5 @@ mat.metallic=ME
 mat.roughness=RO
 
 obj.data.materials.append(mat)
+
+bpy.ops.wm.save_as_mainfile(filepath=OUTPUT_PATH+"\\STATUE_"+FILE_NUM+'.blend')
