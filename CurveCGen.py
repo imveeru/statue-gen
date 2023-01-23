@@ -60,17 +60,20 @@ def generate_chromosome(L,B,H):
     
     VERTICES=generate_vertices(new_L,new_B,new_H)
     
-    FACES=generate_convex_faces(VERTICES)
+    EDGES=generate_edges(VERTICES)
     
-    materials,RoughnessFactor=generate_rgbaRo(len(FACES))
+    r,g,b,a,bd,me,ro,ss=generate_rgbaRo()
     
-    return [RoughnessFactor,[VERTICES,FACES,materials],[new_L,new_B,new_H]]
+    return [r,g,b,a,bd,me,ro,ss,[VERTICES,EDGES],[new_L,new_B,new_H]]
     
 
 def get_stats(CH):
-    print(f'Roughness Factor = {CH[0]}')
-    print(f'Number of vertices = {len(CH[1][0])}')
-    print(f'Number of faces = {len(CH[1][1])}')
-    print(f'Number of materials = {len(CH[1][2])}')
-    print(f'New Bounding Box - (L,B,H) = ({CH[2][0]},{CH[2][1]},{CH[2][2]})')
+    print(f'(R, G, B, A) = ({CH[0]}, {CH[1]}, {CH[2]}, {CH[3]})')
+    print(f'Number of vertices = {len(CH[8][0])}')
+    print(f'Number of edges = {len(CH[8][1])}')
+    print(f'Bevel Depth = {CH[4]}')
+    print(f'Metallic = {CH[5]}')
+    print(f'Roughness = {CH[6]}')
+    print(f'Subsurface Level = {CH[7]}')
+    print(f'New Bounding Box - (L,B,H) = ({CH[9][0]},{CH[9][1]},{CH[9][2]})')
     
