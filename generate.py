@@ -14,7 +14,7 @@ MATERIALS=literal_eval(my_input[6])
 BD=float(my_input[7])
 ME=float(my_input[8])
 RO=float(my_input[9])
-SS=float(my_input[10])
+SS=int(my_input[10])
 
 OUTPUT_PATH=my_input[11]
 
