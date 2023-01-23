@@ -1,5 +1,4 @@
 import random
-import scipy.spatial
 
 def generate_rgbaRo():
     
