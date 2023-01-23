@@ -1,12 +1,22 @@
 import bpy
 import random
+import sys
+from ast import literal_eval
+
+my_input = sys.argv
+
+FILE_NUM=my_input[4]
+
+VERTS_FILE=my_input[5]
+
+MATERIALS_FILE=my_input[7]
+
+RO=int(my_input[8])
+OUTPUT_PATH=my_input[9]
+
 
 # Generate a random set of vertices
-num_vertices = 15
-vertices = [
-    (random.uniform(-5, 5), random.uniform(-3, 3), random.uniform(-8, 8))
-    for _ in range(num_vertices)
-]
+vertices = 
 
 # Create a new curve object and set the vertices
 curve_data = bpy.data.curves.new('MyCurve', type='CURVE')
@@ -29,13 +39,8 @@ bpy.context.collection.objects.link(curve_obj)
 curve_obj.data.splines[0].use_smooth = True
 curve_obj.data.bevel_depth = 0.75
 
-#bpy.data.objects['MyCurve'].select_set(True) 
-#bpy.context.view_layer.objects.active = obj
 bpy.context.view_layer.objects.active = bpy.data.objects[0]
-#bpy.ops.object.convert(target='MESH')
 
-#bpy.context.view_layer.objects.active = bpy.data.objects["MyCurve"]
-#bpy.ops.object.convert()
 obj = bpy.data.objects["MyCurve"]
 
 # Add the modifier to the object
@@ -43,8 +48,11 @@ modifier = obj.modifiers.new(name="Subdivision", type='SUBSURF')
 
 #Set the value of the modifier (e.g. the number of subdivisions)
 modifier.levels = 6
-COLOUR=(0.0196078431372549, 0.6862745098039216, 0.0784313725490196, 0.2)
+
+#material
 mat = bpy.data.materials.new("MyMaterial")
 mat.diffuse_color = COLOUR
+mat.metallic=0.7
+mat.roughness=0.0
 
 obj.data.materials.append(mat)
