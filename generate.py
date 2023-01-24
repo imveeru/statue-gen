@@ -27,6 +27,10 @@ VERTS=literal_eval(VERTS[0])
 # Generate a random set of vertices
 vertices = VERTS
 
+#deleting default objects
+for obj in bpy.data.objects:
+    bpy.data.objects.remove(obj)
+
 # Create a new curve object and set the vertices
 curve_data = bpy.data.curves.new('MyCurve', type='CURVE')
 curve_data.dimensions = '3D'
