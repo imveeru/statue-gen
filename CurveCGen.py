@@ -7,7 +7,7 @@ def generate_rgbaRo():
     b=round(random.uniform(0,1),6)
     a=round(random.uniform(0.25,1),6)
     
-    bd=round(random.uniform(0.75,1.75),2)
+    bd=round(random.uniform(0.5,1.5),2)
     me=round(random.uniform(0,1.0),6)
     ro=round(random.uniform(0,0.5),6)
     ss=random.randint(0,6)
