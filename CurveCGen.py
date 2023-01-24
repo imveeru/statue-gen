@@ -7,7 +7,7 @@ def generate_rgbaRo():
     b=round(random.uniform(0,1),6)
     a=round(random.uniform(0.25,1),6)
     
-    bd=round(random.uniform(0.75,1.75),6)
+    bd=round(random.uniform(0.75,2.75),2)
     me=round(random.uniform(0,1.0),6)
     ro=round(random.uniform(0,0.5),6)
     ss=random.randint(0,6)
@@ -20,7 +20,7 @@ def generate_vertices(L,B,H):
     volume=L*B*H
     
     #generate random number of vertices (min-2, max-volume of bounding frame)
-    numOfVertices=random.randint(2,int(volume**(1/3)))
+    numOfVertices=random.randint(2,int(volume**(1/2)))
     
     #generate vertices array
     VERTICES=[]
