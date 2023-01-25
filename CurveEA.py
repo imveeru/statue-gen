@@ -35,6 +35,10 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
                 mutated_C[i]=random.randint(0,6)
 
             elif i==8:
+                
+                print(mutated_C[i][0])
+                print(mutated_C[i][1])
+
                 choice=random.choice(['add','remove','change','shuffle'])
 
                 if choice=='add':
@@ -48,19 +52,19 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
                         if [x,y,z] not in mutation_addition:
                             mutation_addition.append([x,y,z])
 
-                    mutated_C[i][0]=mutated_C[i][0].extend(mutation_addition)
+                    mutated_C[i][0].extend(mutation_addition)
                     mutated_C[i][1]=generate_edges(mutated_C[i][0])
 
                 elif choice=='remove':
                     
-                    if len(mutated_C[i][0])<6:
-                        n = random.randint(1, int(len(mutated_C[i][0])-2))
+                    if len(mutated_C[i][0])<6 and len(mutated_C[i][0])>4:
+                        n = random.randint(1, len(mutated_C[i][0]) // 2)
                     else:
                         n = random.randint(1, int(len(mutated_C[i][0])**1/2))
-                        
+
                     for _ in range(n):
                         mutated_C[i][0].pop(random.randint(0, len(mutated_C[i][0])-1))
-                   
+
                     mutated_C[i][1]=generate_edges(mutated_C[i][0])
 
                 elif choice=='change':
@@ -73,11 +77,11 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
                         new_vertex=[x,y,z]
                         if new_vertex not in mutated_C[i][0]:
                             mutated_C[i][0][random.randint(0, len(mutated_C[i][0])-1)]=new_vertex
-                    
+
                     mutated_C[i][1]=generate_edges(mutated_C[i][0])
 
                 elif choice=='shuffle':
-                    
+
                     print(mutated_C[i][0])
                     random.shuffle(mutated_C[i][0])
                     print(mutated_C[i][0])
