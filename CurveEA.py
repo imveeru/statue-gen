@@ -59,13 +59,16 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
                     
                     if len(mutated_C[i][0])<6 and len(mutated_C[i][0])>4:
                         n = random.randint(1, len(mutated_C[i][0]) // 2)
+                        for _ in range(n):
+                            mutated_C[i][0].pop(random.randint(0, len(mutated_C[i][0])-1))
                     elif len(mutated_C[i][0])<4:
                         mutated_C[i][0]=mutated_C[i][0]
                     else:
                         n = random.randint(1, int(len(mutated_C[i][0])**1/2))
+                        for _ in range(n):
+                            mutated_C[i][0].pop(random.randint(0, len(mutated_C[i][0])-1))
 
-                    for _ in range(n):
-                        mutated_C[i][0].pop(random.randint(0, len(mutated_C[i][0])-1))
+                    
 
                     mutated_C[i][1]=generate_edges(mutated_C[i][0])
 
