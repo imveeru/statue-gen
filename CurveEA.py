@@ -48,15 +48,15 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
                         if [x,y,z] not in mutation_addition:
                             mutation_addition.append([x,y,z])
 
-                    mutated_C[i][0]=mutated_C[i][0].extened(mutation_addition)
+                    mutated_C[i][0]=mutated_C[i][0].extend(mutation_addition)
                     mutated_C[i][1]=generate_edges(mutated_C[i][0])
 
                 elif choice=='remove':
                     
                     if len(mutated_C[i][0])<6:
-                        n = random.randint(1, len(mutated_C[i][0])-2)
+                        n = random.randint(1, int(len(mutated_C[i][0])-2))
                     else:
-                        n = random.randint(1, len(mutated_C[i][0])**1/2)
+                        n = random.randint(1, int(len(mutated_C[i][0])**1/2))
                         
                     for _ in range(n):
                         mutated_C[i][0].pop(random.randint(0, len(mutated_C[i][0])-1))
