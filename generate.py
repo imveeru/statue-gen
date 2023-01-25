@@ -64,7 +64,7 @@ modifier.levels = SS
 
 #material
 mat = bpy.data.materials.new("MyMaterial")
-mat.diffuse_color = MATERIALS
+mat.diffuse_color = [0.039215, 0.768627, 0.109803, 1.0]
 mat.metallic=ME
 mat.roughness=RO
 

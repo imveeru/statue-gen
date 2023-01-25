@@ -36,8 +36,8 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
 
             elif i==8:
                 
-                print(mutated_C[i][0])
-                print(mutated_C[i][1])
+                # print(mutated_C[i][0])
+                # print(mutated_C[i][1])
 
                 choice=random.choice(['add','remove','change','shuffle'])
 
@@ -59,6 +59,8 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
                     
                     if len(mutated_C[i][0])<6 and len(mutated_C[i][0])>4:
                         n = random.randint(1, len(mutated_C[i][0]) // 2)
+                    elif len(mutated_C[i][0])<4:
+                        mutated_C[i][0]=mutated_C[i][0]
                     else:
                         n = random.randint(1, int(len(mutated_C[i][0])**1/2))
 
@@ -82,9 +84,9 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
 
                 elif choice=='shuffle':
 
-                    print(mutated_C[i][0])
+                    #print(mutated_C[i][0])
                     random.shuffle(mutated_C[i][0])
-                    print(mutated_C[i][0])
+                    #print(mutated_C[i][0])
                     mutated_C[i][1]=generate_edges(mutated_C[i][0])
 
 
