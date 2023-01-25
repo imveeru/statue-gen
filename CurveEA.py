@@ -20,7 +20,7 @@ def mutate(C,L,B,H):  # sourcery skip: merge-comparisons
             
             # for COLOURS
             if i in [0,1,2,3]:
-                mutated_C[i]=round(random.uniform(0,L),6)
+                mutated_C[i]=round(random.uniform(0,1),6)
             
             #for BD
             elif i==4:
@@ -40,7 +40,16 @@ def mutate(C,L,B,H):  # sourcery skip: merge-comparisons
             
             #for VERTS and EDGES
             elif i==8:
-                mutated_C[i][0]=generate_vertices(L,B,H)
+                mutation_n=random.randint(10)
+                mutation_addition=[]
+                for _ in range(mutation_n):
+                    x=round(random.uniform(-L/2,L/2),6)
+                    y=round(random.uniform(-H/2,H/2),6)
+                    z=round(random.uniform(-B/2,B/2),6)
+                    if [x,y,z] not in mutation_addition:
+                        mutation_addition.append([x,y,z])
+                
+                mutated_C[i][0]=mutated_C[i][0].extened(mutation_addition)
                 mutated_C[i][1]=generate_edges(mutated_C[i][0])
     
     return mutated_C

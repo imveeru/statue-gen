@@ -26,9 +26,9 @@ def generate_vertices(L,B,H):
     VERTICES=[]
     i=0
     while i<numOfVertices:
-        x=round(random.uniform(0,L),6)
-        y=round(random.uniform(0,H),6)
-        z=round(random.uniform(0,B),6)
+        x=round(random.uniform(-L/2,L/2),6)
+        y=round(random.uniform(-H/2,H/2),6)
+        z=round(random.uniform(-B/2,B/2),6)
         if [x,y,z] not in VERTICES:
             VERTICES.append([x,y,z])
             i+=1
