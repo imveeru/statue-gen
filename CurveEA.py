@@ -66,9 +66,20 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
                 elif choice=='change':
 
                     mutation_n=random.randint(1,int(len(mutated_C[i][0])**1/2))
+                    for _ in range(n):
+                        x=round(random.uniform(-L/2,L/2),6)
+                        y=round(random.uniform(-H/2,H/2),6)
+                        z=round(random.uniform(-B/2,B/2),6)
+                        new_vertex=[x,y,z]
+                        if new_vertex not in mutated_C[i][0]:
+                            mutated_C[i][0][random.randint(0, len(mutated_C[i][0])-1)]=new_vertex
                     
+                    mutated_C[i][1]=generate_edges(mutated_C[i][0])
 
-
+                elif choice=='shuffle':
+                    
+                    mutated_C[i][0]=random.shuffle(mutated_C[i][0])
+                    mutated_C[i][1]=generate_edges(mutated_C[i][0])
 
 
     return mutated_C
