@@ -35,64 +35,37 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
                 mutated_C[i]=random.randint(0,6)
 
             elif i==8:
-                
-                # print(mutated_C[i][0])
+               
+                #print('Actual',mutated_C[i][0])
                 # print(mutated_C[i][1])
 
-                choice=random.choice(['add','remove','change','shuffle'])
-
-                if choice=='add':
-
-                    mutation_n=random.randint(1,int(len(mutated_C[i][0])**1/2))
-                    mutation_addition=[]
-                    for _ in range(mutation_n):
+                new_verts=copy.copy(mutated_C[i][0])
+                
+                for j in range(len(new_verts)):
+                    choice=random.choice(['add','remove','change'])
+                    
+                    if choice=="add":
                         x=round(random.uniform(-L/2,L/2),6)
                         y=round(random.uniform(-H/2,H/2),6)
                         z=round(random.uniform(-B/2,B/2),6)
-                        if [x,y,z] not in mutation_addition:
-                            mutation_addition.append([x,y,z])
-
-                    mutated_C[i][0].extend(mutation_addition)
-                    mutated_C[i][1]=generate_edges(mutated_C[i][0])
-
-                elif choice=='remove':
+                        new_verts.insert(j,[x,y,z])
+                        j+=1
                     
-                    if len(mutated_C[i][0])<6 and len(mutated_C[i][0])>4:
-                        n = random.randint(1, len(mutated_C[i][0]) // 2)
-                        for _ in range(n):
-                            mutated_C[i][0].pop(random.randint(0, len(mutated_C[i][0])-1))
-                    elif len(mutated_C[i][0])<4:
-                        mutated_C[i][0]=mutated_C[i][0]
-                    else:
-                        n = random.randint(1, int(len(mutated_C[i][0])**1/2))
-                        for _ in range(n):
-                            mutated_C[i][0].pop(random.randint(0, len(mutated_C[i][0])-1))
-
+                    elif choice=="remove":
+                        if len(new_verts)-1 >= 2 and j<len(new_verts):
+                            new_verts.pop(j)
+                            j-=1
                     
-
-                    mutated_C[i][1]=generate_edges(mutated_C[i][0])
-
-                elif choice=='change':
-
-                    mutation_n=random.randint(1,int(len(mutated_C[i][0])**1/2))
-                    for _ in range(mutation_n):
+                    elif choice=="change" and j<len(new_verts):
                         x=round(random.uniform(-L/2,L/2),6)
                         y=round(random.uniform(-H/2,H/2),6)
                         z=round(random.uniform(-B/2,B/2),6)
-                        new_vertex=[x,y,z]
-                        if new_vertex not in mutated_C[i][0]:
-                            mutated_C[i][0][random.randint(0, len(mutated_C[i][0])-1)]=new_vertex
-
-                    mutated_C[i][1]=generate_edges(mutated_C[i][0])
-
-                elif choice=='shuffle':
-
-                    #print(mutated_C[i][0])
-                    random.shuffle(mutated_C[i][0])
-                    #print(mutated_C[i][0])
-                    mutated_C[i][1]=generate_edges(mutated_C[i][0])
-
-
+                        new_verts[j]=[x,y,z]
+                        
+                #print(mutated_C[i][0])
+                mutated_C[i][0]=new_verts
+                mutated_C[i][1]=generate_edges(mutated_C[i][0])
+                         
     return mutated_C
 
 def crossover(C1,C2):
