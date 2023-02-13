@@ -52,7 +52,7 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
                         j+=1
                     
                     elif choice=="remove":
-                        if len(new_verts)-1 >= 2 and j<len(new_verts):
+                        if len(new_verts)-1 >= 4 and j<len(new_verts):
                             new_verts.pop(j)
                             j-=1
                     
