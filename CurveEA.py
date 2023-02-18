@@ -75,7 +75,7 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
                 elif choice=="remove":
                     for _ in range(no_of_times):
                         rem_index=random.randint(0,len(new_verts))
-                        if len(new_verts)-1 >= 4 and j<len(new_verts):
+                        if len(new_verts)-1 >= 4:
                             new_verts.pop(rem_index)                        
 
                 elif choice=="change":
