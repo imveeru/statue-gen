@@ -14,6 +14,7 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
 #     new_H=random.randint(1,H)
 
     mutated_C=copy.copy(C)
+    choice=""
     for i in range(len(mutated_C)):
         # generating a random value and checking for threshold value
         if random.random()>0.5:
