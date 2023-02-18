@@ -63,8 +63,16 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
 #                         z=round(random.uniform(-B/2,B/2),6)
 #                         new_verts[j]=[x,y,z]
 
-                choice=random.choice(['add','remove','change'])
+#                 choice=random.choice(['add','remove','change'])
                 no_of_times=random.randint(1,int(len(new_verts)**(1/1)))
+    
+                choice_prob=random.random()
+                if choice_prob<0.6:
+                    choice="add"
+                elif choice_prob>0.6 and choice_prob<0.8:
+                    choice="remove"
+                elif choice_prob>0.8:
+                    choice="change"
 
                 if choice=="add":
                     for _ in range(no_of_times):
