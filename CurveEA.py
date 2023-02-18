@@ -41,32 +41,56 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
 
                 new_verts=copy.copy(mutated_C[i][0])
                 
-                for j in range(len(new_verts)):
-                    choice=random.choice(['add','remove','change'])
+#                 for j in range(len(new_verts)):
+#                     choice=random.choice(['add','remove','change'])
                     
-                    if choice=="add":
+#                     if choice=="add":
+#                         x=round(random.uniform(-L/2,L/2),6)
+#                         y=round(random.uniform(-H/2,H/2),6)
+#                         z=round(random.uniform(-B/2,B/2),6)
+#                         new_verts.insert(j,[x,y,z])
+#                         j+=1
+                    
+#                     elif choice=="remove":
+#                         if len(new_verts)-1 >= 4 and j<len(new_verts):
+#                             new_verts.pop(j)
+#                             j-=1
+                    
+#                     elif choice=="change" and j<len(new_verts):
+#                         x=round(random.uniform(-L/2,L/2),6)
+#                         y=round(random.uniform(-H/2,H/2),6)
+#                         z=round(random.uniform(-B/2,B/2),6)
+#                         new_verts[j]=[x,y,z]
+
+                choice=random.choice(['add','remove','change'])
+                no_of_times=random.randint(1,int(len(new_verts)**(1/2)))
+
+                if choice=="add":
+                    for _ in range(no_of_times):
                         x=round(random.uniform(-L/2,L/2),6)
                         y=round(random.uniform(-H/2,H/2),6)
                         z=round(random.uniform(-B/2,B/2),6)
-                        new_verts.insert(j,[x,y,z])
-                        j+=1
-                    
-                    elif choice=="remove":
+                        new_verts.append([x,y,z])
+
+                elif choice=="remove":
+                    for _ in range(no_of_times):
+                        rem_index=random.randint(0,len(new_verts))
                         if len(new_verts)-1 >= 4 and j<len(new_verts):
-                            new_verts.pop(j)
-                            j-=1
-                    
-                    elif choice=="change" and j<len(new_verts):
+                            new_verts.pop(rem_index)                        
+
+                elif choice=="change" and j<len(new_verts):
+                    for _ in range(no_of_times):
+                        chng_index=random.randint(0,len(new_verts))
                         x=round(random.uniform(-L/2,L/2),6)
                         y=round(random.uniform(-H/2,H/2),6)
                         z=round(random.uniform(-B/2,B/2),6)
-                        new_verts[j]=[x,y,z]
+                        new_verts[chng_index]=[x,y,z]
                         
                 #print(mutated_C[i][0])
                 mutated_C[i][0]=new_verts
                 mutated_C[i][1]=generate_edges(mutated_C[i][0])
                          
-    return mutated_C
+    return mutated_C,choice
 
 def crossover(C1,C2):
     
