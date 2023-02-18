@@ -76,16 +76,17 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
                 elif choice=="remove":
                     for _ in range(no_of_times):
                         rem_index=random.randint(0,len(new_verts))
-                        if len(new_verts)-1 >= 4:
+                        if len(new_verts)-1 >= 4 and rem_index<len(new_verts):
                             new_verts.pop(rem_index)                        
 
                 elif choice=="change":
                     for _ in range(no_of_times):
                         chng_index=random.randint(0,len(new_verts))
-                        x=round(random.uniform(-L/2,L/2),6)
-                        y=round(random.uniform(-H/2,H/2),6)
-                        z=round(random.uniform(-B/2,B/2),6)
-                        new_verts[chng_index]=[x,y,z]
+                        if chng_index<len(new_verts):
+                            x=round(random.uniform(-L/2,L/2),6)
+                            y=round(random.uniform(-H/2,H/2),6)
+                            z=round(random.uniform(-B/2,B/2),6)
+                            new_verts[chng_index]=[x,y,z]
                         
                 #print(mutated_C[i][0])
                 mutated_C[i][0]=new_verts
