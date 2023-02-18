@@ -64,7 +64,7 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
 #                         new_verts[j]=[x,y,z]
 
                 choice=random.choice(['add','remove','change'])
-                no_of_times=random.randint(1,int(len(new_verts)**(1/2)))
+                no_of_times=random.randint(1,int(len(new_verts)**(1/1)))
 
                 if choice=="add":
                     for _ in range(no_of_times):
