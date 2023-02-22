@@ -20,6 +20,7 @@ def generate_vertices(L,B,H):
     volume=int(L*B*H)
     
     bin_size=int(volume/100) #100->population size
+    print(bin_size)
     bins=[b for b in range(4,volume,bin_size)]
     
     VERTICES=[]
