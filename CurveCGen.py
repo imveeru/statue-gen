@@ -64,6 +64,10 @@ def generate_chromosome(L,B,H):
     new_B=round(random.uniform(1,B),6)
     new_H=round(random.uniform(1,H),6)
     
+    volume=int(new_L*new_B*new_H)
+    bin_size=volume//100
+    
+    
     VERTICES=generate_vertices(new_L,new_B,new_H)
     
     EDGES=generate_edges(VERTICES)
