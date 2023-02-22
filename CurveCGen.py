@@ -27,7 +27,7 @@ def generate_vertices(L,B,H):
     for i in range(len(bins)-1):
         #generate random number of vertices (min-2, max-volume of bounding frame)
 #         numOfVertices=random.randint(4,int(volume**(1/1)))
-        numOfVertices=random.randint(bins[i],bins[i+1],bin_size)
+        numOfVertices=random.randint(bins[i],bins[i+1])
 
         #generate vertices array
         i=0
