@@ -67,18 +67,18 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
                 no_of_times=random.randint(1,int(len(new_verts)**(1/1)))
     
                 choice_prob=random.random()
-                if choice_prob<0.6:
+                if choice_prob<0.4:
                     choice="add"
-                elif choice_prob>0.6 and choice_prob<0.8:
+                elif choice_prob>0.4 and choice_prob<0.7:
                     choice="remove"
-                elif choice_prob>0.8:
+                elif choice_prob>0.7:
                     choice="change"
 
                 if choice=="add":
                     for _ in range(no_of_times):
-                        x=round(random.uniform(-L/2,L/2),6)
-                        y=round(random.uniform(-H/2,H/2),6)
-                        z=round(random.uniform(-B/2,B/2),6)
+                        x=round(random.uniform(0,L),6)
+                        y=round(random.uniform(0,H),6)
+                        z=round(random.uniform(0,B),6)
                         new_verts.append([x,y,z])
 
                 elif choice=="remove":
@@ -91,9 +91,9 @@ def mutate(C,L,B,H):    # sourcery skip: merge-comparisons
                     for _ in range(no_of_times):
                         chng_index=random.randint(0,len(new_verts))
                         if chng_index<len(new_verts):
-                            x=round(random.uniform(-L/2,L/2),6)
-                            y=round(random.uniform(-H/2,H/2),6)
-                            z=round(random.uniform(-B/2,B/2),6)
+                            x=round(random.uniform(0,L),6)
+                            y=round(random.uniform(0,H),6)
+                            z=round(random.uniform(0,B),6)
                             new_verts[chng_index]=[x,y,z]
                         
                 #print(mutated_C[i][0])
