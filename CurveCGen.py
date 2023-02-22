@@ -19,21 +19,25 @@ def generate_vertices(L,B,H):
     
     volume=int(L*B*H)
     
+    bin_size=int(volume/100) #100->population size
+    bins=[b for b in range(4,volume,bin_size)]
     
-    
-    #generate random number of vertices (min-2, max-volume of bounding frame)
-    numOfVertices=random.randint(4,int(volume**(1/1)))
-    
-    #generate vertices array
-    VERTICES=[]
-    i=0
-    while i<numOfVertices:
-        x=round(random.uniform(0,L),6)
-        y=round(random.uniform(0,H),6)
-        z=round(random.uniform(0,B),6)
-        if [x,y,z] not in VERTICES:
-            VERTICES.append([x,y,z])
-            i+=1
+    for i in range(len(bins)-1):
+        #generate random number of vertices (min-2, max-volume of bounding frame)
+#         numOfVertices=random.randint(4,int(volume**(1/1)))
+        
+        
+
+        #generate vertices array
+        VERTICES=[]
+        i=0
+        while i<numOfVertices:
+            x=round(random.uniform(0,L),6)
+            y=round(random.uniform(0,H),6)
+            z=round(random.uniform(0,B),6)
+            if [x,y,z] not in VERTICES:
+                VERTICES.append([x,y,z])
+                i+=1
     
     return VERTICES
 
