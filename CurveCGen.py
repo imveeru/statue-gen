@@ -52,7 +52,7 @@ def generate_edges(vertices):  # sourcery skip: convert-to-enumerate
     
     return edges
 
-def generate_chromosome(L,B,H):
+def generate_chromosome(L,B,H,noOfVertices):
     '''
     L -> Length of the bounding frame of model to be generated
     B -> Breadth of the bounding frame of model to be generated
@@ -60,21 +60,21 @@ def generate_chromosome(L,B,H):
     seed -> Manauly set random seed for each chromosome in the population 
     '''
     
-    new_L=round(random.uniform(1,L),6)
-    new_B=round(random.uniform(1,B),6)
-    new_H=round(random.uniform(1,H),6)
+    # new_L=round(random.uniform(1,L),6)
+    # new_B=round(random.uniform(1,B),6)
+    # new_H=round(random.uniform(1,H),6)
     
-    volume=int(new_L*new_B*new_H)
-    bin_size=volume//100
+    # volume=int(new_L*new_B*new_H)
+    # bin_size=volume//100
     
     
-    VERTICES=generate_vertices(new_L,new_B,new_H)
+    VERTICES=generate_vertices(L,B,H,noOfVertices)
     
     EDGES=generate_edges(VERTICES)
     
     r,g,b,a,bd,me,ro,ss=generate_rgbaRo()
     
-    return [r,g,b,a,bd,me,ro,ss,[VERTICES,EDGES],[new_L,new_B,new_H]]
+    return [r,g,b,a,bd,me,ro,ss,[VERTICES,EDGES],[L,B,H]]
     
 
 def get_stats(CH):
